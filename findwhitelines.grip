@@ -1,0 +1,114 @@
+<grip:Pipeline>
+  <sources>
+    <grip:MultiImageFile>
+      <property name="path[5]" value="C:\Users\User\Documents\2019VisionImages\CargoLine60in.jpg"/>
+      <property name="numImages" value="6"/>
+      <property name="path[0]" value="C:\Users\User\Documents\2019VisionImages\CargoAngledLine48in.jpg"/>
+      <property name="path[1]" value="C:\Users\User\Documents\2019VisionImages\CargoLine16in.jpg"/>
+      <property name="index" value="5"/>
+      <property name="path[2]" value="C:\Users\User\Documents\2019VisionImages\CargoLine24in.jpg"/>
+      <property name="path[3]" value="C:\Users\User\Documents\2019VisionImages\CargoLine36in.jpg"/>
+      <property name="path[4]" value="C:\Users\User\Documents\2019VisionImages\CargoLine48in.jpg"/>
+    </grip:MultiImageFile>
+  </sources>
+  <steps>
+    <grip:Step name="Blur">
+      <grip:Input step="0" socket="0"/>
+      <grip:Input step="0" socket="1">
+        <value>BOX</value>
+      </grip:Input>
+      <grip:Input step="0" socket="2">
+        <value>4.504504504504505</value>
+      </grip:Input>
+      <grip:Output step="0" socket="0" previewed="false"/>
+    </grip:Step>
+    <grip:Step name="HSL Threshold">
+      <grip:Input step="1" socket="0"/>
+      <grip:Input step="1" socket="1">
+        <value>
+          <double>0.0</double>
+          <double>180.0</double>
+        </value>
+      </grip:Input>
+      <grip:Input step="1" socket="2">
+        <value>
+          <double>0.5031948865853337</double>
+          <double>168.52936698678474</double>
+        </value>
+      </grip:Input>
+      <grip:Input step="1" socket="3">
+        <value>
+          <double>123.30048995085086</double>
+          <double>199.13617635053663</double>
+        </value>
+      </grip:Input>
+      <grip:Output step="1" socket="0" previewed="false"/>
+    </grip:Step>
+    <grip:Step name="Find Contours">
+      <grip:Input step="2" socket="0"/>
+      <grip:Input step="2" socket="1">
+        <value>false</value>
+      </grip:Input>
+      <grip:Output step="2" socket="0" previewed="true"/>
+    </grip:Step>
+    <grip:Step name="HTTP Publish ContoursReport">
+      <grip:Input step="3" socket="0"/>
+      <grip:Input step="3" socket="1">
+        <value>myContoursReport</value>
+      </grip:Input>
+      <grip:Input step="3" socket="2">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="3" socket="3">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="3" socket="4">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="3" socket="5">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="3" socket="6">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="3" socket="7">
+        <value>true</value>
+      </grip:Input>
+    </grip:Step>
+  </steps>
+  <connections>
+    <grip:Connection>
+      <grip:Output source="0" socket="0" previewed="true"/>
+      <grip:Input step="0" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="0" socket="0" previewed="false"/>
+      <grip:Input step="1" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="1" socket="0" previewed="false"/>
+      <grip:Input step="2" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="2" socket="0" previewed="true"/>
+      <grip:Input step="3" socket="0"/>
+    </grip:Connection>
+  </connections>
+  <settings>
+    <teamNumber>0</teamNumber>
+    <publishAddress>roboRIO-0-FRC.local</publishAddress>
+    <deployAddress>roboRIO-0-FRC.local</deployAddress>
+    <deployDir>/home/lvuser</deployDir>
+    <deployUser>lvuser</deployUser>
+    <deployJavaHome>/usr/local/frc/JRE/</deployJavaHome>
+    <deployJvmOptions>-Xmx50m -XX:-OmitStackTraceInFastThrow -XX:+HeapDumpOnOutOfMemoryError -XX:MaxNewSize=16m</deployJvmOptions>
+  </settings>
+  <codeGenerationSettings>
+    <language>Java</language>
+    <className>GripPipeline</className>
+    <implementWpilibPipeline>false</implementWpilibPipeline>
+    <saveDir>C:\Users\User\GRIP</saveDir>
+    <packageName></packageName>
+    <moduleName>grip</moduleName>
+  </codeGenerationSettings>
+</grip:Pipeline>
